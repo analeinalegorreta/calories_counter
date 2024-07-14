@@ -1,0 +1,29 @@
+<form class=" space-y-5 bg-white shadow p-10 rounded-lg" [formGroup]="myForm"
+  autocomplete="off">
+  <div class="grid grid-cols-1 grap-3">
+    <label htmlFor="category" class="font-bold"> Categoría:</label>
+    <select  class=" border border-slate-300 p-2 rounded-lg w-full bg-white"  formControlName="category">
+      <option *ngFor="let item of categories" [value]="item.id" [selected]="item.selected">{{item.name}}</option>
+
+    </select>
+  </div>
+  <div class="grid grid-cols-1 grap-3">
+    <label htmlFor="name" class="font-bold"> Actividad:</label>
+    <input  formControlName="nameActivity" type="text" class="border border-slate-300 p-2 rounded-lg"
+      placeholder="Ej. Comida, Jugo de Naranja, Ensalada, Ejercicio, Pesas, Bicicleta"  />
+  </div>
+  <div class="grid grid-cols-1 grap-3">
+    <label htmlFor="calories" class="font-bold"> Calorias:</label>
+    <input  formControlName="calories" type="number" class="border border-slate-300 p-2 rounded-lg"
+      placeholder="Ej. Calorias - 300 o 500"  />
+  </div>
+  <input type="submit"
+    class="bg-gray-700 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white cursor-pointer disabled:opacity-10"
+   [disabled]="myForm.invalid"
+    (click)="onSubmit()"
+    value="{{myForm.get('category')!.value=='Ejercicio' ? 'Guardar Ejercicio' : 'Guardar Comida'}}"
+    />
+   <!-- <p>Form value: {{ myForm.value | json }}</p>
+<p>Form status: {{ myForm.get('category')!.value | json }}</p> -->
+
+</form>
